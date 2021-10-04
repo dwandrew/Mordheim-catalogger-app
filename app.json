@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "mordheim-catalogger",
+    "slug": "mordheim-catalogger",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "mordheim-catalogger"
+}
