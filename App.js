@@ -7,34 +7,9 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import HomeScreen from './views/home/home';
 import DetailsScreen from './views/details/details';
 
-// function HomeScreen({ navigation }) {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <Text>This is the Home Screen</Text>
-//       <Button
-//         title="Go to Details"
-//         onPress={() => navigation.navigate('Details')}
-//       />
-//     </View>
-//   );
-// }
-
-// function DetailsScreen({ navigation }) {
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//       <Text>Details Screen</Text>
-//       <Button
-//         title="Go to Home"
-//         onPress={() => navigation.navigate('Home')}
-//       />
-//     </View>
-//   );
-// }
-
+// global.api_url = "https://mordheim-database.herokuapp.com/"
 
 const Stack = createNativeStackNavigator();
-
-
 
 function App() {
   return (
