@@ -12,7 +12,6 @@ const EquipmentScreen = ({ navigation }) => {
       const getEquipment = () => {
         console.log("Hello there")
         fetch(`https://mordheim-database.herokuapp.com/equipment`)
-        // return fetch(`https://mordheim-database.herokuapp.com/equipment`)
           .then((response) => response.json())
           .then((json) => {
               setEquipment([...json])

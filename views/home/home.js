@@ -30,6 +30,7 @@ const HomeScreen = ({ navigation }) => {
 
     return (
       <SafeAreaView>
+  
       <ScrollView>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', height: "95%" }}>
         <Text>This is the Home Screen</Text>
