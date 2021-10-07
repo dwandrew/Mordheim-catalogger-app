@@ -9,25 +9,6 @@ const HomeScreen = ({ navigation }) => {
 
   const [equipment, setEquipment] = useState()
 
-      const getEquipment = () => {
-        console.log("Hello there")
-        fetch(`https://mordheim-database.herokuapp.com/equipment`)
-        // return fetch(`https://mordheim-database.herokuapp.com/equipment`)
-          .then((response) => response.json())
-          .then((json) => {
-              setEquipment([...json])
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
-
-      useEffect(() => {
-        if(!equipment){
-        getEquipment();
-        }
-      }, []);
-
       const styles = {
         containerStyle: {
             flex: 1,
@@ -39,6 +20,7 @@ const HomeScreen = ({ navigation }) => {
             flex: 2,
             flexDirection: 'column',
             margin: 10,
+            justifyText: 'center',
             maxWidth: "100%" 
         }
     }
@@ -49,30 +31,24 @@ const HomeScreen = ({ navigation }) => {
     return (
       <SafeAreaView>
       <ScrollView>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', height: "95%" }}>
         <Text>This is the Home Screen</Text>
-        <View style={styles.containerStyle}>
-        {equipment && equipment.map(e => {
-          return(
-            <View style={styles.textContainerStyle} key= {e.id}>
-            <Text>{e.name} </Text>
-            <Text>{e.cost} Gold crowns</Text>
-            <Text>{e.rarity}</Text>
-            <Text>{e.description}</Text>
-            </View>
-          )
-        })}
-        </View>
        
       </View>
 
            
         
+      </ScrollView>
+      <View>
     <Button
           title="Go to Details"
           onPress={() => navigation.navigate('Details')}
         />    
-      </ScrollView>
+    <Button
+          title="Go to Equipment"
+          onPress={() => navigation.navigate('Equipment')}
+        />    
+        </View>
       </SafeAreaView>
     );
   }
