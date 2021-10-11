@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import DropdownMenu from 'react-native-dropdown-menu';
 import HomeStack from './views/home/homestack';
 // global.api_url = "https://mordheim-database.herokuapp.com/"
 

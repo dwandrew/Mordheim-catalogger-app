@@ -5,16 +5,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-const EquipmentScreen = ({ navigation }) => {
+const SkillScreen = ({ navigation }) => {
 
-  const [equipment, setEquipment] = useState()
+  const [skills, setSkills] = useState()
 
-      const getEquipment = () => {
+      const getSkills = () => {
         console.log("Hello there")
-        fetch(`https://mordheim-database.herokuapp.com/equipment`)
+        fetch(`https://mordheim-database.herokuapp.com/skills`)
           .then((response) => response.json())
           .then((json) => {
-              setEquipment([...json])
+              setSkills([...json])
           })
           .catch((error) => {
             console.error(error);
@@ -22,8 +22,8 @@ const EquipmentScreen = ({ navigation }) => {
       };
 
       useEffect(() => {
-        if(!equipment){
-        getEquipment();
+        if(!skills){
+        getSkills();
         }
       }, []);
 
@@ -59,13 +59,12 @@ const EquipmentScreen = ({ navigation }) => {
       <ScrollView>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <View style={styles.containerStyle}>
-        {equipment && equipment.map(e => {
+        {skills && skills.map(s => {
           return(
-            <View style={styles.textContainerStyle} key= {e.id}>
-            <Text>{e.name} </Text>
-            <Text>{e.cost} Gold crowns</Text>
-            <Text>{e.rarity}</Text>
-            <Text style = {styles.textBottom}>{e.description}</Text>
+            <View style={styles.textContainerStyle} key= {s.id}>
+            <Text>{s.name} </Text>
+            <Text>{s.type}</Text>
+            <Text style = {styles.textBottom}>{s.description}</Text>
             </View>
           )
         })}
@@ -73,7 +72,8 @@ const EquipmentScreen = ({ navigation }) => {
        
       </View>
 
-          
+           
+        
     <Button
           title="Go to Details"
           onPress={() => navigation.navigate('Home')}
@@ -83,4 +83,4 @@ const EquipmentScreen = ({ navigation }) => {
     );
   }
 
-  export default EquipmentScreen;
+  export default SkillScreen;

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 
-const navBar = () => {
+const Navbar = () => {
 
     const styles = StyleSheet.create({
         header: {
@@ -11,7 +11,8 @@ const navBar = () => {
             height: "100%",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
+            backgroundColor: "red"
         },
         headerText: {
             fontWeight: "bold",
@@ -30,4 +31,5 @@ const navBar = () => {
     )
     }
 
+    export default Navbar
   

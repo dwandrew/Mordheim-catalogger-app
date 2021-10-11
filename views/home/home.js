@@ -7,8 +7,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const HomeScreen = ({ navigation }) => {
 
-  const [equipment, setEquipment] = useState()
-
       const styles = {
         containerStyle: {
             flex: 1,
@@ -42,8 +40,8 @@ const HomeScreen = ({ navigation }) => {
       </ScrollView>
       <View>
     <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('Details')}
+          title="Go to Skills"
+          onPress={() => navigation.navigate('Skills')}
         />    
     <Button
           title="Go to Equipment"
