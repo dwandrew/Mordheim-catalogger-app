@@ -1,14 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, TouchableOpacity, FlatList} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { withOrientation } from 'react-navigation';
 
 const SkillScreen = ({ navigation }) => {
 
   const [skills, setSkills] = useState()
-  const skillTypes = ["combat", "shooting", "academic", "strength", "speed", "sisters of sigmar", "skaven"]
+  const skillTypes = [{key:"combat"}, {key:"shooting"}, {key:"academic"}, {key:"strength"}, {key:"speed"}, {key:"sisters of sigmar"}, {key:"skaven"}]
   const [activeSkill, setActiveSkill] = useState("")
 
       const getSkills = () => {
@@ -39,8 +40,10 @@ const SkillScreen = ({ navigation }) => {
         },
         button: {
             alignItems: "center",
-            backgroundColor: "#DDDDDD",
-            padding: 10
+            backgroundColor: "black",
+            borderRadius: 2,
+            padding: 10,
+            margin: 1
           },
         textContainerStyle: {
             flex: 2,
@@ -57,13 +60,32 @@ const SkillScreen = ({ navigation }) => {
         }
     }
     
-
+    const renderGridItem = ({item, index}) => {
+      let title = item.key.split()
+      title[0] = title[0].toUpperCase()
+      title = title.join()
+      return(
+        <TouchableOpacity 
+        style={styles.button}
+        onPress={() => {setActiveSkill(item.key)}}
+      >
+        <Text style = {{color: "white"}}>{title}</Text>
+        </TouchableOpacity>
+      )
+    }
 
 
     return (
-      <SafeAreaView>
-      <View>
-      {skillTypes.map(s => {
+      <SafeAreaView style = {{flex: 1}}>
+      {/* <TouchableOpacity style = {{alignItems: 'flex-end'}} onPress = {()=> navigation.openDrawer}><Text>Open menu</Text></TouchableOpacity> */}
+      <View style = {{width: "100%"}}>
+
+      <FlatList
+        data ={skillTypes}
+        renderItem = {renderGridItem}
+        numColumns = {"4"}
+      />
+      {/* {skillTypes.map( s, index => {
           let title = s.split()
           title[0] = title[0].toUpperCase()
           title = title.join()
@@ -75,7 +97,7 @@ const SkillScreen = ({ navigation }) => {
         <Text>{title}</Text>
         </TouchableOpacity>
           )
-      })}
+      })} */}
       </View>
     
       <ScrollView>

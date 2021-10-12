@@ -12,15 +12,6 @@ import Navbar from '../navbar/navbar';
 
 const Stack = createNativeStackNavigator();
 
-// const screens = {
-//     Home: {
-//         screen: Home,
-//         navigationOptions:{
-//             headerTitle: () => <Navbar/>
-//         }
-//     }
-// } 
-
 const HomeStack = () => {
     return(
 <NavigationContainer>

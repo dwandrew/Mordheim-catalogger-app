@@ -33,7 +33,7 @@ const EquipmentScreen = ({ navigation }) => {
             flexDirection: "column",
             justifyContent: 'space-around',
             maxWidth: "100%",
-           
+            maxHeight: "100%"
             
         },
         textContainerStyle: {
@@ -55,7 +55,7 @@ const EquipmentScreen = ({ navigation }) => {
 
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style = {{marginBottom: 40}}>
       <ScrollView>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <View style={styles.containerStyle}>
@@ -74,10 +74,10 @@ const EquipmentScreen = ({ navigation }) => {
       </View>
 
           
-    <Button
+    {/* <Button
           title="Go to Details"
           onPress={() => navigation.navigate('Home')}
-        />    
+        />     */}
       </ScrollView>
       </SafeAreaView>
     );
