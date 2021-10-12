@@ -120,12 +120,6 @@ const SkillScreen = ({ navigation }) => {
        
       </View>
 
-           
-        
-    <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('Home')}
-        />    
       </ScrollView>
       </SafeAreaView>
     );

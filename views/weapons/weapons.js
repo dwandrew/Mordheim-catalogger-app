@@ -6,17 +6,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { withOrientation } from 'react-navigation';
 
-const SkillScreen = ({ navigation }) => {
+const WeaponScreen = ({ navigation }) => {
 
-  const [skills, setSkills] = useState()
-  const skillTypes = [{key:"combat"}, {key:"shooting"}, {key:"academic"}, {key:"strength"}, {key:"speed"}, {key:"sisters of sigmar"}, {key:"skaven"}]
-  const [activeSkill, setActiveSkill] = useState("")
+  const [weapons, setWeapons] = useState()
+  const [activeWeapon, setActiveWeapon] = useState("")
 
-      const getSkills = () => {
-        fetch(`https://mordheim-database.herokuapp.com/skills`)
+      const getWeapons = () => {
+        fetch(`https://mordheim-database.herokuapp.com/weapons`)
           .then((response) => response.json())
           .then((json) => {
-              setSkills([...json])
+            setWeapons([...json])
           })
           .catch((error) => {
             console.error(error);
@@ -24,8 +23,8 @@ const SkillScreen = ({ navigation }) => {
       };
 
       useEffect(() => {
-        if(!skills){
-        getSkills();
+        if(!weapons){
+        getWeapons();
         }
       }, []);
 
@@ -59,45 +58,11 @@ const SkillScreen = ({ navigation }) => {
           marginBottom: 10
         }
     }
-    
-    const renderGridItem = ({item, index}) => {
-      let title = item.key.split()
-      title[0] = title[0].toUpperCase()
-      title = title.join()
-      return(
-        <TouchableOpacity 
-        style={styles.button}
-        onPress={() => {setActiveSkill(item.key)}}
-      >
-        <Text style = {{color: "white"}}>{title}</Text>
-        </TouchableOpacity>
-      )
-    }
-
 
     return (
       <SafeAreaView style = {{flex: 1}}>
       {/* <TouchableOpacity style = {{alignItems: 'flex-end'}} onPress = {()=> navigation.openDrawer}><Text>Open menu</Text></TouchableOpacity> */}
       <View style = {{width: "100%"}}>
-
-      <FlatList
-        data ={skillTypes}
-        renderItem = {renderGridItem}
-        numColumns = {"4"}
-      />
-      {/* {skillTypes.map( s, index => {
-          let title = s.split()
-          title[0] = title[0].toUpperCase()
-          title = title.join()
-          return(
-            <TouchableOpacity
-        style={styles.button}
-        onPress={() => {setActiveSkill(s)}}
-      >
-        <Text>{title}</Text>
-        </TouchableOpacity>
-          )
-      })} */}
       </View>
     
       <ScrollView>
@@ -105,30 +70,39 @@ const SkillScreen = ({ navigation }) => {
         
         <View style={styles.containerStyle}>
 
-        {skills && skills.map(s => {
-        if(s.skill_type == activeSkill && s.name !== "Rat ogre stupidity"){
+        {weapons && weapons.map(w => {
+            {/* let special_rules = []
+            if(w.special_rules){
+
+            } */}
+
           return(
-            <View style={styles.textContainerStyle} key= {s.id}>
-            <Text>{s.name} </Text>
-            <Text>{s.type}</Text>
-            <Text style = {styles.textBottom}>{s.description}</Text>
+            <View style={styles.textContainerStyle} key= {w.id}>
+            <Text>{w.name} </Text>
+            <Text>{w.cost} Gold crowns</Text>
+            <Text>{w.rarity}</Text>
+            <Text>{w.range}</Text>
+            <Text>Strength: {w.strength}</Text>
+            {w.special_rules!== [] ? w.special_rules.map(r => {
+                let name = r.name.replace(/\_/g, "-")
+                let desc = r.description.replace(/\_/g, "-")
+                return(<>
+                <Text>{name}</Text>
+                <Text>{desc}</Text>
+                </>
+                )
+            }) : null}
+            <Text style = {styles.textBottom}></Text>
             </View>
           )
-            }
         })}
         </View>
        
       </View>
 
-           
-        
-    <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('Home')}
-        />    
       </ScrollView>
       </SafeAreaView>
     );
   }
 
-  export default SkillScreen;
+  export default WeaponScreen;

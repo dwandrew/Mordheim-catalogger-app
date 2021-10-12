@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import { Animated, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import SkillScreen from './views/skills/skills';
 import EquipmentScreen from './views/equipment/equipment';
+import WeaponScreen from './views/weapons/weapons';
 import HomeStack from './views/home/homestack';
 
 export default function App({navigation}) {
@@ -28,6 +29,10 @@ export default function App({navigation}) {
     return(
       <EquipmentScreen/>
     )
+      if(currentTab == "Weapons")
+    return(
+      <WeaponScreen/>
+    )
 
     }
     else {
@@ -47,6 +52,7 @@ export default function App({navigation}) {
           {TabButton(currentTab, setCurrentTab, "Home")}
           {TabButton(currentTab, setCurrentTab, "Skills")}
           {TabButton(currentTab, setCurrentTab, "Equipment")}
+          {TabButton(currentTab, setCurrentTab, "Weapons")}
           {/* {TabButton(currentTab, setCurrentTab, "Settings")} */}
 
         </View>
