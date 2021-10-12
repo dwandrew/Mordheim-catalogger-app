@@ -71,28 +71,23 @@ const WeaponScreen = ({ navigation }) => {
         <View style={styles.containerStyle}>
 
         {weapons && weapons.map(w => {
-            {/* let special_rules = []
-            if(w.special_rules){
-
-            } */}
 
           return(
             <View style={styles.textContainerStyle} key= {w.id}>
-            <Text>{w.name} </Text>
-            <Text>{w.cost} Gold crowns</Text>
+            <Text style = {{fontWeight: "bold"}}>{w.name} </Text>
+            <Text>{w.cost !== "0" ? `${w.cost} Gold crowns` : "Free"}</Text>
             <Text>{w.rarity}</Text>
-            <Text>{w.range}</Text>
-            <Text>Strength: {w.strength}</Text>
+            <Text>{w.range !== "Close combat" ? "Range: " : null}{w.range}</Text>
+            <Text style = {styles.textBottom}>Strength: {w.strength}</Text>
             {w.special_rules!== [] ? w.special_rules.map(r => {
                 let name = r.name.replace(/\_/g, "-")
                 let desc = r.description.replace(/\_/g, "-")
                 return(<>
-                <Text>{name}</Text>
-                <Text>{desc}</Text>
+                <Text style = {{fontStyle: "italic"}}>{name}</Text>
+                <Text style = {styles.textBottom}>{desc}</Text>
                 </>
                 )
             }) : null}
-            <Text style = {styles.textBottom}></Text>
             </View>
           )
         })}

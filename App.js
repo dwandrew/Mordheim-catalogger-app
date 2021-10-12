@@ -49,10 +49,10 @@ export default function App({navigation}) {
             // Tab Bar Buttons....
           }
 
-          {TabButton(currentTab, setCurrentTab, "Home")}
-          {TabButton(currentTab, setCurrentTab, "Skills")}
-          {TabButton(currentTab, setCurrentTab, "Equipment")}
-          {TabButton(currentTab, setCurrentTab, "Weapons")}
+          {TabButton(currentTab, setCurrentTab, "Home", setShowMenu) }
+          {TabButton(currentTab, setCurrentTab, "Skills",  setShowMenu)}
+          {TabButton(currentTab, setCurrentTab, "Equipment",  setShowMenu)}
+          {TabButton(currentTab, setCurrentTab, "Weapons",  setShowMenu)}
           {/* {TabButton(currentTab, setCurrentTab, "Settings")} */}
 
         </View>
@@ -120,13 +120,6 @@ export default function App({navigation}) {
             setShowMenu(!showMenu);
           }}>
 
-            {/* <Image source={showMenu ? close : menu} style={{
-              width: 20,
-              height: 20,
-              tintColor: 'black',
-              marginTop: 40,
-
-            }}></Image> */}
             {showMenu ? <Text
             style={{
               height: 20,
@@ -157,16 +150,12 @@ export default function App({navigation}) {
 }
 
 // For multiple Buttons...
-const TabButton = (currentTab, setCurrentTab, title) => {
+const TabButton = (currentTab, setCurrentTab, title, setShowMenu) => {
   return (
 
     <TouchableOpacity onPress={() => {
-      if (title == "LogOut") {
-        // Do your Stuff...
-      } else {
         setCurrentTab(title)
-       
-      }
+        // setShowMenu(false)
     }}>
       <View style={{
         flexDirection: "row",
