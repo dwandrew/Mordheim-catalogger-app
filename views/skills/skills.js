@@ -85,22 +85,9 @@ const SkillScreen = ({ navigation }) => {
         renderItem = {renderGridItem}
         numColumns = {"4"}
       />
-      {/* {skillTypes.map( s, index => {
-          let title = s.split()
-          title[0] = title[0].toUpperCase()
-          title = title.join()
-          return(
-            <TouchableOpacity
-        style={styles.button}
-        onPress={() => {setActiveSkill(s)}}
-      >
-        <Text>{title}</Text>
-        </TouchableOpacity>
-          )
-      })} */}
       </View>
     
-      <ScrollView>
+      <ScrollView style = {{marginBottom : 100}}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         
         <View style={styles.containerStyle}>

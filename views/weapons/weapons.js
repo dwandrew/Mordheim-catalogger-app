@@ -60,12 +60,8 @@ const WeaponScreen = ({ navigation }) => {
     }
 
     return (
-      <SafeAreaView style = {{flex: 1}}>
-      {/* <TouchableOpacity style = {{alignItems: 'flex-end'}} onPress = {()=> navigation.openDrawer}><Text>Open menu</Text></TouchableOpacity> */}
-      <View style = {{width: "100%"}}>
-      </View>
-    
-      <ScrollView>
+    <SafeAreaView style = {{flex: 1,}}>
+      <ScrollView style = {{marginBottom: 100}}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         
         <View style={styles.containerStyle}>
