@@ -65,8 +65,8 @@ const WeaponScreen = ({ navigation }) => {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         
         <View style={styles.containerStyle}>
-
-        {weapons && weapons.map(w => {
+        {!weapons ? <Text>information loading</Text> :
+        weapons && weapons.map(w => {
           return(
             <View style={styles.textContainerStyle} key= {w.id}>
             <Text style = {{fontWeight: "bold"}}>{w.name} </Text>

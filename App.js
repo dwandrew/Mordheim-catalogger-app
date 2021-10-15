@@ -140,7 +140,9 @@ export default function App({navigation}) {
             fontSize: 30,
             fontWeight: 'bold',
             color: 'black',
-            paddingTop: 20
+            paddingTop: 20,
+            paddingLeft: 10,
+            textDecorationLine: "underline"
           }}>{currentTab}</Text>
 
           <ScrollView

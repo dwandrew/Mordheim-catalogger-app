@@ -59,7 +59,8 @@ const EquipmentScreen = ({ navigation }) => {
       <ScrollView>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <View style={styles.containerStyle}>
-        {equipment && equipment.map(e => {
+        {!equipment ? <Text>information loading</Text> : 
+        equipment && equipment.map(e => {
           let description = e.description.replace(/\  /g, "")
           return(
             <View style={styles.textContainerStyle} key= {e.id}>

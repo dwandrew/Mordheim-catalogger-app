@@ -91,8 +91,8 @@ const SkillScreen = ({ navigation }) => {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         
         <View style={styles.containerStyle}>
-
-        {skills && skills.map(s => {
+        {!skills ? <Text>information loading</Text> : 
+        skills && skills.map(s => {
         if(s.skill_type == activeSkill && s.name !== "Rat ogre stupidity"){
           return(
             <View style={styles.textContainerStyle} key= {s.id}>
