@@ -60,12 +60,13 @@ const EquipmentScreen = ({ navigation }) => {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <View style={styles.containerStyle}>
         {equipment && equipment.map(e => {
+          let description = e.description.replace(/\  /g, "")
           return(
             <View style={styles.textContainerStyle} key= {e.id}>
             <Text style = {{fontWeight: "bold"}}>{e.name} </Text>
             <Text style = {{fontStyle: "italic"}} >{e.cost} Gold crowns</Text>
             <Text>{e.rarity}</Text>
-            <Text style = {styles.textBottom}>{e.description}</Text>
+            <Text style = {styles.textBottom}>{description}</Text>
             </View>
           )
         })}

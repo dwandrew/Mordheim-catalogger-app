@@ -4,6 +4,7 @@ import { Animated, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View
 import SkillScreen from './views/skills/skills';
 import EquipmentScreen from './views/equipment/equipment';
 import WeaponScreen from './views/weapons/weapons';
+import WarriorScreen from './views/warriors/warriors';
 import HomeStack from './views/home/homestack';
 
 export default function App({navigation}) {
@@ -33,6 +34,10 @@ export default function App({navigation}) {
     return(
       <WeaponScreen/>
     )
+      if(currentTab == "Warriors")
+    return(
+      <WarriorScreen/>
+    )
 
     }
     else {
@@ -50,6 +55,7 @@ export default function App({navigation}) {
           }
 
           {TabButton(currentTab, setCurrentTab, "Home", setShowMenu) }
+          {TabButton(currentTab, setCurrentTab, "Warriors", setShowMenu) }
           {TabButton(currentTab, setCurrentTab, "Skills",  setShowMenu)}
           {TabButton(currentTab, setCurrentTab, "Equipment",  setShowMenu)}
           {TabButton(currentTab, setCurrentTab, "Weapons",  setShowMenu)}

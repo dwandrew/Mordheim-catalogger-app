@@ -6,16 +6,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { withOrientation } from 'react-navigation';
 
-const WeaponScreen = ({ navigation }) => {
+const WarriorScreen = ({ navigation }) => {
 
-  const [weapons, setWeapons] = useState()
-  const [activeWeapon, setActiveWeapon] = useState("")
+  const [warriors, setWarriors] = useState()
+  const [activeWarrior, setActiveWarrior] = useState("")
 
-      const getWeapons = () => {
-        fetch(`https://mordheim-database.herokuapp.com/weapons`)
+      const getWarriors = () => {
+        fetch(`https://mordheim-database.herokuapp.com/warriors`)
           .then((response) => response.json())
           .then((json) => {
-            setWeapons([...json])
+            setWarriors([...json])
           })
           .catch((error) => {
             console.error(error);
@@ -23,8 +23,8 @@ const WeaponScreen = ({ navigation }) => {
       };
 
       useEffect(() => {
-        if(!weapons){
-        getWeapons();
+        if(!warriors){
+        getWarriors();
         }
       }, []);
 
@@ -65,21 +65,24 @@ const WeaponScreen = ({ navigation }) => {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         
         <View style={styles.containerStyle}>
+        {!warriors ? <Text>information loading</Text> :
 
-        {weapons && weapons.map(w => {
+        warriors && warriors.map(w => {
+            let description = w.description.replace(/\  /g, "")
+            console.log(w.description)
           return(
             <View style={styles.textContainerStyle} key= {w.id}>
             <Text style = {{fontWeight: "bold"}}>{w.name} </Text>
             <Text style = {{fontStyle: "italic"}}>{w.cost !== "0" ? `${w.cost} Gold crowns` : "Free"}</Text>
-            <Text>{w.rarity}</Text>
-            <Text>{w.range !== "Close Combat" ? "Range: " : null}{w.range}</Text>
-            <Text style = {styles.textBottom}>Strength: {w.strength}</Text>
-            {w.special_rules!== [] ? w.special_rules.map(r => {
+            <Text style = {{fontStyle: "italic", fontWeight: "bold"}}>{w.warrior_type}</Text>
+            <Text>{description}</Text>
+            {/* <Text style = {styles.textBottom}>Strength: {w.strength}</Text> */}
+            {w.skills!== [] ? w.skills.map(r => {
                 let name = r.name.replace(/\_/g, "-")
                 let desc = r.description.replace(/\_/g, "-")
-                desc = desc.replace(/\  /g, "")
                 return(<>
                 <Text style = {{fontStyle: "italic", fontWeight: "bold"}}>{name}</Text>
+                <Text style = {{fontStyle: "italic"}}>{r.skill_type}</Text>
                 <Text style = {styles.textBottom}>{desc}</Text>
                 </>
                 )
@@ -96,4 +99,4 @@ const WeaponScreen = ({ navigation }) => {
     );
   }
 
-  export default WeaponScreen;
+  export default WarriorScreen;
