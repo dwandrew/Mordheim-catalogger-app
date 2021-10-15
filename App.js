@@ -87,6 +87,7 @@ export default function App({navigation}) {
         }
 
         <Animated.View style={{
+        
           transform: [{
             translateY: closeButtonOffset
           }]
@@ -124,7 +125,8 @@ export default function App({navigation}) {
             style={{
               height: 20,
               marginTop: 40,
-            }}>Close menu</Text> : <Text>Menu</Text>}
+              fontWeight: "bold",
+            }}>Close menu</Text> : <Text style = {{fontWeight: "bold"}}>Menu</Text>}
 
           </TouchableOpacity>
 
