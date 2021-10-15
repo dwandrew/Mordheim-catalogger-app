@@ -96,8 +96,8 @@ const SkillScreen = ({ navigation }) => {
         if(s.skill_type == activeSkill && s.name !== "Rat ogre stupidity"){
           return(
             <View style={styles.textContainerStyle} key= {s.id}>
-            <Text>{s.name} </Text>
-            <Text>{s.type}</Text>
+            <Text style = {{fontWeight: "bold"}}>{s.name} </Text>
+            <Text style = {{fontStyle: "italic"}}>{s.skill_type}</Text>
             <Text style = {styles.textBottom}>{s.description}</Text>
             </View>
           )

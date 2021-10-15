@@ -62,8 +62,8 @@ const EquipmentScreen = ({ navigation }) => {
         {equipment && equipment.map(e => {
           return(
             <View style={styles.textContainerStyle} key= {e.id}>
-            <Text>{e.name} </Text>
-            <Text>{e.cost} Gold crowns</Text>
+            <Text style = {{fontWeight: "bold"}}>{e.name} </Text>
+            <Text style = {{fontStyle: "italic"}} >{e.cost} Gold crowns</Text>
             <Text>{e.rarity}</Text>
             <Text style = {styles.textBottom}>{e.description}</Text>
             </View>

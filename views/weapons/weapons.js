@@ -71,15 +71,15 @@ const WeaponScreen = ({ navigation }) => {
           return(
             <View style={styles.textContainerStyle} key= {w.id}>
             <Text style = {{fontWeight: "bold"}}>{w.name} </Text>
-            <Text>{w.cost !== "0" ? `${w.cost} Gold crowns` : "Free"}</Text>
+            <Text style = {{fontStyle: "italic"}}>{w.cost !== "0" ? `${w.cost} Gold crowns` : "Free"}</Text>
             <Text>{w.rarity}</Text>
-            <Text>{w.range !== "Close combat" ? "Range: " : null}{w.range}</Text>
+            <Text>{w.range !== "Close Combat" ? "Range: " : null}{w.range}</Text>
             <Text style = {styles.textBottom}>Strength: {w.strength}</Text>
             {w.special_rules!== [] ? w.special_rules.map(r => {
                 let name = r.name.replace(/\_/g, "-")
                 let desc = r.description.replace(/\_/g, "-")
                 return(<>
-                <Text style = {{fontStyle: "italic"}}>{name}</Text>
+                <Text style = {{fontStyle: "italic", fontWeight: "bold"}}>{name}</Text>
                 <Text style = {styles.textBottom}>{desc}</Text>
                 </>
                 )
