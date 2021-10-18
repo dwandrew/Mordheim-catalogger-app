@@ -9,7 +9,16 @@ import { withOrientation } from 'react-navigation';
 const WarriorScreen = ({ navigation }) => {
 
   const [warriors, setWarriors] = useState()
-  const [activeWarrior, setActiveWarrior] = useState("")
+  const warriorTypes = [
+    {key:"Mercenaries"},
+    {key:"Cult of the possessed"}, 
+    {key:"Skaven"}, 
+    {key:"The Undead"}, 
+    {key:"Witch hunters"}, 
+    {key:"Sisters of Sigmar"}, 
+  ]
+
+  const [activeWarrior, setActiveWarrior] = useState("Mercenaries")
 
       const getWarriors = () => {
         fetch(`https://mordheim-database.herokuapp.com/warriors`)
@@ -27,6 +36,24 @@ const WarriorScreen = ({ navigation }) => {
         getWarriors();
         }
       }, []);
+
+      const renderGridItem = ({item, index}) => {
+        let title = item.key.split()
+        title[0] = title[0].toUpperCase()
+        title = title.join()
+        let width = Dimensions.get('window').width
+        let third = width/3
+        let fontSize = third*0.1
+        return(
+          <TouchableOpacity 
+          style={styles.button}
+          onPress={() => {setActiveWarrior(item.key)}}
+        >
+          <Text style = {{color: "white", fontSize: fontSize}}>{title}</Text>
+          </TouchableOpacity>
+        )
+      }
+  
 
 const numColumns = 9;
 const size = Dimensions.get('window').width/(numColumns+2);
@@ -54,7 +81,7 @@ const statGrid = (data) => {
         },
         itemContainer: {
             width: "11%",
-            height: 25,
+            height: 27,
 
           },
           item: {
@@ -72,7 +99,7 @@ const statGrid = (data) => {
             alignItems: "center",
             backgroundColor: "black",
             borderRadius: 2,
-            padding: 10,
+            padding: 7,
             margin: 1
           },
         textContainerStyle: {
@@ -92,6 +119,14 @@ const statGrid = (data) => {
 
     return (
     <SafeAreaView style = {{flex: 1,}}>
+          <View style = {{width: "100%"}}>
+            <FlatList
+              data ={warriorTypes}
+              renderItem = {renderGridItem}
+              numColumns = {"3"}
+              />
+            </View>
+
       <ScrollView style = {{marginBottom: 100}}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         
@@ -99,6 +134,7 @@ const statGrid = (data) => {
         {!warriors ? <Text>information loading</Text> :
 
         warriors && warriors.map(w => {
+          if (w.warband == activeWarrior){
             let description = w.description.replace(/\  /g, "")
             let stats =   [
                     {id: `move_${w.id}`, value: `M`}, 
@@ -141,7 +177,7 @@ const statGrid = (data) => {
             {w.skills!== [] ? w.skills.map(r => {
                 let name = r.name.replace(/\_/g, "-")
                 let desc = r.description.replace(/\_/g, "-")
-                desc = desc.replace(/\  /g, "-")
+                desc = desc.trim()
                 return(<>
                 <Text style = {{fontStyle: "italic", fontWeight: "bold"}}>{name}</Text>
                 <Text style = {{fontStyle: "italic"}}>{r.skill_type} skill</Text>
@@ -152,7 +188,10 @@ const statGrid = (data) => {
             </View>
             </View>
           )
-        })}
+        }
+        }
+        )
+        }
         </View>
        
       </View>

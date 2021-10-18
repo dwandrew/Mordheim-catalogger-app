@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, TouchableOpacity, FlatList} from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, TouchableOpacity, FlatList, Dimensions} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -10,7 +10,7 @@ const SkillScreen = ({ navigation }) => {
 
   const [skills, setSkills] = useState()
   const skillTypes = [{key:"combat"}, {key:"shooting"}, {key:"academic"}, {key:"strength"}, {key:"speed"}, {key:"sisters of sigmar"}, {key:"skaven"}]
-  const [activeSkill, setActiveSkill] = useState("")
+  const [activeSkill, setActiveSkill] = useState("combat")
 
       const getSkills = () => {
         fetch(`https://mordheim-database.herokuapp.com/skills`)
@@ -64,12 +64,13 @@ const SkillScreen = ({ navigation }) => {
       let title = item.key.split()
       title[0] = title[0].toUpperCase()
       title = title.join()
+     
       return(
         <TouchableOpacity 
         style={styles.button}
         onPress={() => {setActiveSkill(item.key)}}
       >
-        <Text style = {{color: "white"}}>{title}</Text>
+        <Text style = {{color: "white", }}>{title}</Text>
         </TouchableOpacity>
       )
     }
