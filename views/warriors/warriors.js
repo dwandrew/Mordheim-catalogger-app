@@ -19,6 +19,7 @@ const WarriorScreen = ({ navigation }) => {
   ]
 
   const [activeWarrior, setActiveWarrior] = useState("Mercenaries")
+  const [equipment_lists, setEquipmentLists] = useState([])
 
       const getWarriors = () => {
         fetch(`https://mordheim-database.herokuapp.com/warriors`)
@@ -31,9 +32,23 @@ const WarriorScreen = ({ navigation }) => {
           });
       };
 
+      const getEquipmentLists = () => {
+        fetch(`https://mordheim-database.herokuapp.com/equipment_lists`)
+          .then((response) => response.json())
+          .then((json) => {
+            setEquipmentLists([...json])
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
       useEffect(() => {
         if(!warriors){
         getWarriors();
+        }
+        if(!equipment_lists){
+          getEquipmentLists()
         }
       }, []);
 
