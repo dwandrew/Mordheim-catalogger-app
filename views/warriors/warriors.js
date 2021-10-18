@@ -71,25 +71,28 @@ const WarriorScreen = ({ navigation }) => {
       }
 
 const equipmentLists = ()=> {
-  return(
+  return(<View>{
   equipment_lists && equipment_lists.map(el => {
         if (el.warband == activeWarrior){
           return(
-          <View style={styles.itemContainer}>
+          <View style={{width: "95%"}}>
             <Text style={styles.item}>{el.name}</Text>
+                {itemGrid(2, el.weapons)}
           </View>)
         }
       })
-  )
+}</View>)
 }
   
 
-const numColumns = 9;
-const size = Dimensions.get('window').width/(numColumns+2);
 
 
 
-const statGrid = (data) => {
+
+const statGrid = (numColumns, data) => {
+
+  const size = Dimensions.get('window').width/(numColumns+2);
+
   return (
     <FlatList
       data={data}
@@ -102,6 +105,26 @@ const statGrid = (data) => {
       numColumns={numColumns} />
   );
 }
+
+const itemGrid = (numColumns, data) => {
+
+  return (
+    <FlatList
+      data={data}
+      renderItem={({item}) => (
+        <View style= {{height: 100}}>
+          <Text style={styles.itemTitle}>{item.name}</Text>
+          <Text style={styles.itemItalic}>{item.cost} gold crowns</Text>
+          <Text style={styles.itemNoBorder}>{item.rarity}</Text>
+          <Text style={styles.itemNoBorder}>{item.range}</Text>
+          <Text style={styles.itemNoBorder}>{item.strength}</Text>
+        </View>
+      )}
+      keyExtractor={item => item.id}
+      numColumns={numColumns} />
+  );
+}
+
 
       const styles = {
         containerStyle: {
@@ -119,11 +142,26 @@ const statGrid = (data) => {
             margin: 0,
             borderWidth: 1,
             borderColor: "black",
-            // width: 35,
             textAlign: 'center',
-            // height: 20,
-            // paddingLeft: 10,
-            // padding: 'auto'
+          },
+          itemNoBorder: {
+            flex: 1,
+            margin: 0,
+            textAlign: 'center',
+          },
+          itemTitle: {
+            flex: 1,
+            margin: 0,
+            fontWeight: "bold",
+            textAlign: 'center',
+
+          },
+          itemItalic: {
+            flex: 1,
+            margin: 0,
+            textAlign: 'center',
+            fontStyle: "italic"
+
           },
         button: {
             alignItems: "center",
@@ -203,7 +241,7 @@ const statGrid = (data) => {
             <Text style = {{fontStyle: "italic", fontWeight: "bold"}}>{w.warrior_type}</Text>
             <Text>{description}</Text>
             <View style = {{marginTop: 10, marginBottom: 10}}>
-            {statGrid(stats)}
+            {statGrid(9, stats)}
             </View>
             <View style = {{marginBottom: 10}}>
             <Text style = {{fontWeight: "bold"}} >Equipment list:</Text>
