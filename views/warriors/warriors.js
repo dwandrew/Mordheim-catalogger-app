@@ -19,7 +19,8 @@ const WarriorScreen = ({ navigation }) => {
   ]
 
   const [activeWarrior, setActiveWarrior] = useState("Mercenaries")
-  const [equipment_lists, setEquipmentLists] = useState([])
+  const [equipment_lists, setEquipmentLists] = useState()
+  const [showEquipment, setShowEquipment] = useState(false)
 
       const getWarriors = () => {
         fetch(`https://mordheim-database.herokuapp.com/warriors`)
@@ -68,10 +69,25 @@ const WarriorScreen = ({ navigation }) => {
           </TouchableOpacity>
         )
       }
+
+const equipmentLists = ()=> {
+  return(
+  equipment_lists && equipment_lists.map(el => {
+        if (el.warband == activeWarrior){
+          return(
+          <View style={styles.itemContainer}>
+            <Text style={styles.item}>{el.name}</Text>
+          </View>)
+        }
+      })
+  )
+}
   
 
 const numColumns = 9;
 const size = Dimensions.get('window').width/(numColumns+2);
+
+
 
 const statGrid = (data) => {
   return (
@@ -97,7 +113,6 @@ const statGrid = (data) => {
         itemContainer: {
             width: "11%",
             height: 27,
-
           },
           item: {
             flex: 1,
@@ -141,9 +156,18 @@ const statGrid = (data) => {
               numColumns = {"3"}
               />
             </View>
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={() => {setShowEquipment(!showEquipment)}}
+        >
+          <Text style = {{color: "white"}}>{showEquipment ? "Hide equipment list" : "Show equipment list"}</Text>
+        </TouchableOpacity>
 
       <ScrollView style = {{marginBottom: 100}}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View>
+          {showEquipment ? equipmentLists() : null}
+        </View>
         
         <View style={styles.containerStyle}>
         {!warriors ? <Text>information loading</Text> :
