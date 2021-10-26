@@ -75,7 +75,7 @@ const WarriorScreen = ({ navigation }) => {
 const equipmentLists = ()=> {
   return(<View>{
   equipment_lists && equipment_lists.map(el => {
-        if (el.warband == activeWarrior){
+        if (el.warband.toUpperCase() == activeWarrior.toUpperCase()){
           return(
           <View style={{width: "95%"}}>
             <Text style={styles.item}>{el.name}</Text>
@@ -83,6 +83,11 @@ const equipmentLists = ()=> {
                 {el.armours.length >0 && <>
               <View style={{width: "100%", borderBottomWidth: 1, borderBottomColor: "black", marginTop: 5, marginBottom: 5}}></View>
                 {itemGrid(2, el.armours)}
+                </>
+                }
+                {el.equipments.length >0 && <>
+              <View style={{width: "100%", borderBottomWidth: 1, borderBottomColor: "black", marginTop: 5, marginBottom: 5}}></View>
+                {itemGrid(2, el.equipments)}
                 </>
                 }
           </View>)
@@ -110,16 +115,29 @@ const statGrid = (numColumns, data) => {
 }
 
 const itemGrid = (numColumns, data) => {
-
+  data.forEach(item => {
+    if(item.name == "Blessed water"){
+      item.rarity = "Common"
+      item.cost = "10"
+    }
+    if(item.name == "Holy tome"){
+      item.cost = "120"
+    }
+    
+    if(item.name == "Holy (Unholy) relic"){
+      item.name = "Holy relic"
+      item.cost = "15"
+    }
+  } )
   return (
     <FlatList
       style = {{width: "100%", marginBottom: 10}}
       data={data}
       renderItem={({item}) => (
-        <View style= {{height: 60, flex: 1, width: 100}}>
+        <View style= {{height: 40, flex: 1, flexShrink: 1, width: "50%"}}>
           <Text style={styles.itemTitle}>{item.name}</Text>
           <Text style={styles.itemItalic}>{item.cost} gold crowns</Text>
-          <Text style={styles.itemNoBorder}>{item.rarity}</Text>
+          {/* <Text style={styles.itemNoBorder}>{item.name == "Blessed water" ? "Common" : item.rarity.split("(")[0]}</Text> */}
           {/* <Text style={styles.itemNoBorder}>{item.range !== "Close Combat" ? "Range: " : ""}{item.range}</Text>
           <Text style={styles.itemNoBorder}>Strength: {item.strength}</Text> */}
         </View>
@@ -153,7 +171,6 @@ const itemGrid = (numColumns, data) => {
             flex: 1,
             flexwrap: "wrap",
             margin: 0,
-            fontSize:10,
             textAlign: 'center',
           },
           itemTitle: {
@@ -168,7 +185,6 @@ const itemGrid = (numColumns, data) => {
           itemItalic: {
             flex: 1,
             margin: 0,
-            fontSize:12,
             textAlign: 'center',
             fontStyle: "italic"
 
