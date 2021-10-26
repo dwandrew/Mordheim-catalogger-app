@@ -1,11 +1,13 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Animated, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
 import SkillScreen from './views/skills/skills';
 import EquipmentScreen from './views/equipment/equipment';
 import WeaponScreen from './views/weapons/weapons';
 import WarriorScreen from './views/warriors/warriors';
 // import HomeStack from './views/home/homestack';
+import { LogBox } from 'react-native';
+
 
 export default function App({navigation}) {
   const [currentTab, setCurrentTab] = useState("Home");
@@ -18,6 +20,12 @@ export default function App({navigation}) {
   // Scale Intially must be One...
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
+
+
+useEffect(() => {
+  LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+}, [])
+
 
   const currentScreen = () => {
     if(currentTab !=="Home"){

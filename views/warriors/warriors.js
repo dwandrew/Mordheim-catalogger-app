@@ -201,7 +201,7 @@ const itemGrid = (numColumns, data) => {
           <Text style = {{color: "white"}}>{showEquipment ? "Hide equipment list" : "Show equipment list"}</Text>
         </TouchableOpacity>
 
-      <ScrollView style = {{marginBottom: 100}}>
+      <View style = {{marginBottom: 100}}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <View>
           {showEquipment ? equipmentLists() : null}
@@ -273,7 +273,7 @@ const itemGrid = (numColumns, data) => {
        
       </View>
 
-      </ScrollView>
+      </View>
       </View>
     );
   }
