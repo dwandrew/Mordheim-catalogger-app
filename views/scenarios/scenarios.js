@@ -51,7 +51,7 @@ const ScenarioScreen = ({ navigation }) => {
             maxWidth: "100%",
             borderBottomColor: 'black',
             borderBottomWidth: 1,
-            paddingBottom: 5,
+            paddingBottom: 15,
             borderStyle: "dashed"
             
         },
