@@ -77,19 +77,23 @@ const equipmentLists = ()=> {
   equipment_lists && equipment_lists.map(el => {
         if (el.warband.toUpperCase() == activeWarrior.toUpperCase()){
           return(
-          <View style={{width: "95%"}}>
-            <Text style={styles.item}>{el.name}</Text>
+          <View style={{width: "95%", textAlign: "center"}}>
+            <Text style={styles.itemTitle}>{el.name}</Text>
+              <Text style={[styles.itemItalic, {borderBottomWidth: 1, marginTop: 3, marginBottom: 3}]}>Weapons</Text>
                 {itemGrid(2, el.weapons)}
                 {el.armours.length >0 && <>
-              <View style={{width: "100%", borderBottomWidth: 1, borderBottomColor: "black", marginTop: 5, marginBottom: 5}}></View>
+              
+              <Text style={[styles.itemItalic,  {borderBottomWidth: 1, marginTop: 3, marginBottom: 3}]}>Armour</Text>
                 {itemGrid(2, el.armours)}
                 </>
                 }
                 {el.equipments.length >0 && <>
-              <View style={{width: "100%", borderBottomWidth: 1, borderBottomColor: "black", marginTop: 5, marginBottom: 5}}></View>
+              
+              <Text style={[styles.itemItalic,  {borderBottomWidth: 1, marginTop: 3, marginBottom: 3}]}>Equipment</Text>
                 {itemGrid(2, el.equipments)}
                 </>
                 }
+              <View style={{borderBottomWidth: 1, marginTop: 3, marginBottom: 10, borderStyle: "dashed"}}></View>
           </View>)
         }
       })
