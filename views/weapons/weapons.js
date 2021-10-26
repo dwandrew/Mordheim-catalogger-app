@@ -148,7 +148,7 @@ const WeaponScreen = ({ navigation }) => {
         <View style={styles.containerStyle}>
         {!weapons ? <Text>information loading</Text> :
         weapons && activeWeapon== "Close Combat" && closeCombatWeapons()}
-        {!rangedWeapons ? <Text>information loading</Text> :
+        {!rangedWeapons ? null :
           rangedWeapons && activeWeapon== "Ranged" && ranged_Weapons()}
         </View>
        

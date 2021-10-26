@@ -55,8 +55,8 @@ const EquipmentScreen = ({ navigation }) => {
 
 
     return (
-      // <SafeAreaView style = {{marginBottom: 40}}>
-      <ScrollView>
+      // <SafeAreaView >
+      <ScrollView style = {{marginBottom: 40}}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <View style={styles.containerStyle}>
         {!equipment ? <Text>information loading</Text> : 
