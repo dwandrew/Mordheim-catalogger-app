@@ -8,6 +8,7 @@ import WeaponScreen from './views/weapons/weapons';
 import WarriorScreen from './views/warriors/warriors';
 import ArmourScreen from './views/armour/armour';
 import SpellScreen from './views/spells/spells';
+import ScenarioScreen from './views/scenarios/scenarios';
 // import HomeStack from './views/home/homestack';
 import { LogBox } from 'react-native';
 
@@ -57,6 +58,10 @@ useEffect(() => {
     return(
       <SpellScreen/>
     )
+      if(currentTab == "Scenarios")
+    return(
+      <ScenarioScreen/>
+    )
 
     }
     else {
@@ -80,6 +85,7 @@ useEffect(() => {
           {TabButton(currentTab, setCurrentTab, "Equipment",  setShowMenu)}
           {TabButton(currentTab, setCurrentTab, "Weapons",  setShowMenu)}
           {TabButton(currentTab, setCurrentTab, "Armour",  setShowMenu)}
+          {TabButton(currentTab, setCurrentTab, "Scenarios",  setShowMenu)}
           {/* {TabButton(currentTab, setCurrentTab, "Settings")} */}
 
         </View>
