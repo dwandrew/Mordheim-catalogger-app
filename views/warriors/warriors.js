@@ -80,16 +80,17 @@ const equipmentLists = ()=> {
           <View style={{width: "95%"}}>
             <Text style={styles.item}>{el.name}</Text>
                 {itemGrid(2, el.weapons)}
+                {el.armours.length >0 && <>
+              <View style={{width: "100%", borderBottomWidth: 1, borderBottomColor: "black", marginTop: 5, marginBottom: 5}}></View>
+                {itemGrid(2, el.armours)}
+                </>
+                }
           </View>)
         }
       })
 }</View>)
 }
   
-
-
-
-
 
 const statGrid = (numColumns, data) => {
 
@@ -143,13 +144,16 @@ const itemGrid = (numColumns, data) => {
           item: {
             flex: 1,
             margin: 0,
+            flexwrap: "wrap",
             borderWidth: 1,
             borderColor: "black",
             textAlign: 'center',
           },
           itemNoBorder: {
             flex: 1,
+            flexwrap: "wrap",
             margin: 0,
+            fontSize:10,
             textAlign: 'center',
           },
           itemTitle: {
@@ -164,6 +168,7 @@ const itemGrid = (numColumns, data) => {
           itemItalic: {
             flex: 1,
             margin: 0,
+            fontSize:12,
             textAlign: 'center',
             fontStyle: "italic"
 

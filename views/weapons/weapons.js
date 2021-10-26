@@ -15,16 +15,10 @@ const WeaponScreen = ({ navigation }) => {
           .then((response) => response.json())
           .then((json) => {
             let ranged = json.filter(w => w.range !== "Close Combat" && w.range !== "Close combat" )
-            ranged = ranged.sort(function (a, b) {
-              return a.name - b.name;
-            });
             console.log(ranged)
             setRangedWeapons([...ranged])
             let close = json.filter(w => w.range == "Close Combat" || w.range == "Close combat")
             console.log(close)
-            close = close.sort(function (a, b) {
-              return a.name - b.name;
-            });
             setWeapons([...close])
           })
           .catch((error) => {
