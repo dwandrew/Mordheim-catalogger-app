@@ -186,7 +186,7 @@ const itemGrid = (numColumns, data) => {
     }
 
     return (
-    <SafeAreaView style = {{flex: 1,}}>
+    <View style = {{flex: 1,}}>
           <View style = {{width: "100%"}}>
             <FlatList
               data ={warriorTypes}
@@ -274,7 +274,7 @@ const itemGrid = (numColumns, data) => {
       </View>
 
       </ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 

@@ -55,7 +55,7 @@ const EquipmentScreen = ({ navigation }) => {
 
 
     return (
-      <SafeAreaView style = {{marginBottom: 40}}>
+      // <SafeAreaView style = {{marginBottom: 40}}>
       <ScrollView>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <View style={styles.containerStyle}>
@@ -81,7 +81,7 @@ const EquipmentScreen = ({ navigation }) => {
           onPress={() => navigation.navigate('Home')}
         />     */}
       </ScrollView>
-      </SafeAreaView>
+      // </SafeAreaView>
     );
   }
 

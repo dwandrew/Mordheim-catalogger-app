@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, TouchableOpacity, FlatList, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, TouchableOpacity, FlatList, Dimensions, ViewBase} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -77,7 +77,8 @@ const SkillScreen = ({ navigation }) => {
 
 
     return (
-      <SafeAreaView style = {{flex: 1}}>
+      <View>
+      {/* // <SafeAreaView style = {{flex: 1}}> */}
       {/* <TouchableOpacity style = {{alignItems: 'flex-end'}} onPress = {()=> navigation.openDrawer}><Text>Open menu</Text></TouchableOpacity> */}
       <View style = {{width: "100%"}}>
 
@@ -109,7 +110,8 @@ const SkillScreen = ({ navigation }) => {
       </View>
 
       </ScrollView>
-      </SafeAreaView>
+      {/* </SafeAreaView> */}
+      </View>
     );
   }
 

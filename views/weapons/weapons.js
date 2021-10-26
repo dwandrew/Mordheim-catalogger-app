@@ -1,10 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
+
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, TouchableOpacity, FlatList} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { withOrientation } from 'react-navigation';
+
 
 const WeaponScreen = ({ navigation }) => {
 
@@ -60,7 +57,7 @@ const WeaponScreen = ({ navigation }) => {
     }
 
     return (
-    <SafeAreaView style = {{flex: 1,}}>
+    <View style = {{flex: 1,}}>
       <ScrollView style = {{marginBottom: 100}}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         
@@ -92,7 +89,7 @@ const WeaponScreen = ({ navigation }) => {
       </View>
 
       </ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 

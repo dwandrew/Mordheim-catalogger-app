@@ -5,7 +5,7 @@ import SkillScreen from './views/skills/skills';
 import EquipmentScreen from './views/equipment/equipment';
 import WeaponScreen from './views/weapons/weapons';
 import WarriorScreen from './views/warriors/warriors';
-import HomeStack from './views/home/homestack';
+// import HomeStack from './views/home/homestack';
 
 export default function App({navigation}) {
   const [currentTab, setCurrentTab] = useState("Home");

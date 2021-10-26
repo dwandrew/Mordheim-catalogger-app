@@ -27,8 +27,8 @@ const HomeScreen = ({ navigation }) => {
 
 
     return (
-      <SafeAreaView>
-  
+      // <SafeAreaView>
+    <View>
       <ScrollView>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', height: "95%" }}>
         <Text>This is the Home Screen</Text>
@@ -48,7 +48,9 @@ const HomeScreen = ({ navigation }) => {
           onPress={() => navigation.navigate('Equipment')}
         />    
         </View>
-      </SafeAreaView>
+      {/* // </SafeAreaView> */}
+
+      </View>
     );
   }
 
