@@ -1,6 +1,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { Animated, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
+import HomeScreen from './views/home/home';
 import SkillScreen from './views/skills/skills';
 import EquipmentScreen from './views/equipment/equipment';
 import WeaponScreen from './views/weapons/weapons';
@@ -49,7 +50,7 @@ useEffect(() => {
 
     }
     else {
-      return null
+      return <HomeScreen/>
     }
   }
 

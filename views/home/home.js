@@ -1,9 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
+
 import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const HomeScreen = ({ navigation }) => {
 
@@ -28,29 +25,12 @@ const HomeScreen = ({ navigation }) => {
 
     return (
       // <SafeAreaView>
-    <View>
-      <ScrollView>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', height: "95%" }}>
-        <Text>This is the Home Screen</Text>
-       
-      </View>
-
-           
-        
-      </ScrollView>
-      <View>
-    <Button
-          title="Go to Skills"
-          onPress={() => navigation.navigate('Skills')}
-        />    
-    <Button
-          title="Go to Equipment"
-          onPress={() => navigation.navigate('Equipment')}
-        />    
-        </View>
-      {/* // </SafeAreaView> */}
-
-      </View>
+    <View style={{ flex: 1, justifyContent: 'center', marginLeft: 10 }}>
+    <Text style={{ marginBottom: 10, fontSize: 16, fontWeight: 'bold' }}>Welcome to the mordheim catalogger</Text>
+    <Text>In here you can view warbands, equipment, skills, spells, scenarios, weapons and armour.</Text>
+    <Text>It may take a second or two to fetch the data from the database, hope you enjoy!</Text>
+    <Text style={{ marginTop: 10, fontStyle: 'italic' }}>Click on the menu to see options</Text>
+    </View>
     );
   }
 
