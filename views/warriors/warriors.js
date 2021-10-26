@@ -20,6 +20,7 @@ const WarriorScreen = ({ navigation }) => {
 
   const [activeWarrior, setActiveWarrior] = useState("Mercenaries")
   const [equipment_lists, setEquipmentLists] = useState()
+  const [mutations, setMutations] = useState()
   const [showEquipment, setShowEquipment] = useState(false)
 
       const getWarriors = () => {
@@ -44,12 +45,29 @@ const WarriorScreen = ({ navigation }) => {
           });
       };
 
+      const getMutations = () => {
+        fetch(`https://mordheim-database.herokuapp.com/mutations`)
+          .then((response) => response.json())
+          .then((json) => {
+            
+            setMutations([...json])
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+
       useEffect(() => {
         if(!warriors){
         getWarriors();
         }
         if(!equipment_lists){
           getEquipmentLists()
+          
+        }
+        if(!mutations){
+          getMutations()
+          
         }
       }, []);
 
@@ -97,7 +115,14 @@ const equipmentLists = ()=> {
           </View>)
         }
       })
-}</View>)
+}
+{activeWarrior == "Cult of the possessed" && <>
+                <Text style={[styles.itemItalic,  {borderBottomWidth: 1, marginTop: 3, marginBottom: 3}]}>Mutations</Text>
+                {itemGrid(2, mutations)}
+                <View style={{borderBottomWidth: 1, marginTop: 3, marginBottom: 10, borderStyle: "dashed"}}></View>
+                </>}
+
+</View>)
 }
   
 
