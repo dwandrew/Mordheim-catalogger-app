@@ -45,6 +45,7 @@ const EquipmentScreen = ({ navigation }) => {
             maxWidth: "100%",
             borderBottomColor: 'black',
             borderBottomWidth: 1,
+            paddingBottom: 10
         },
         textBottom:{
           marginBottom: 10

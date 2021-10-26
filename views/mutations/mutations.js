@@ -3,17 +3,17 @@ import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, TouchableOpacity, FlatList} from 'react-native';
 
 
-const ArmourScreen = ({ navigation }) => {
+const MutationsScreen = ({ navigation }) => {
 
-  const [armour, setArmour] = useState()
+  const [mutation, setMutations] = useState()
   
 
-      const getArmour = () => {
-        fetch(`https://mordheim-database.herokuapp.com/armours`)
+      const getMutations = () => {
+        fetch(`https://mordheim-database.herokuapp.com/mutations`)
           .then((response) => response.json())
           .then((json) => {
             
-            setArmour([...json])
+            setMutations([...json])
           })
           .catch((error) => {
             console.error(error);
@@ -21,8 +21,8 @@ const ArmourScreen = ({ navigation }) => {
       };
 
       useEffect(() => {
-        if(!armour){
-        getArmour();
+        if(!mutation){
+        getMutations();
         }
       }, []);
 
@@ -59,24 +59,13 @@ const ArmourScreen = ({ navigation }) => {
         }
     }
 
-    const displayArmour = () => {
-      return( armour.map(w => {
+    const displayMutations = () => {
+      return( mutation.map(w => {
         return(
           <View style={styles.textContainerStyle} key= {w.id}>
             <Text style = {{fontWeight: "bold"}}>{w.name} </Text>
             <Text style = {{fontStyle: "italic"}}>{w.cost !== "0" ? `${w.cost} Gold crowns` : "Free"}</Text>
-            <Text>{w.rarity}</Text>
-            {w.saving_throw !== "-" ? <Text>Saving throw: {w.saving_throw}</Text> : null}
-            {w.special_rules.length > 0 ? w.special_rules.map(r => {
-                let name = r.name.replace(/\_/g, "-")
-                let desc = r.description.replace(/\_/g, "-")
-                desc = desc.replace(/\  /g, "")
-                return(<>
-                <Text style = {{fontStyle: "italic", fontWeight: "bold"}}>{name == "Shielded" ? "Optional rule: " : ""}{name}</Text>
-                <Text style = {styles.textBottom}>{desc}</Text>
-                </>
-                )
-            }) : <Text></Text>}
+            <Text>{w.description}</Text>
             </View>
         )}
       
@@ -92,8 +81,8 @@ const ArmourScreen = ({ navigation }) => {
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         
         <View style={styles.containerStyle}>
-        {!armour ? <Text>information loading</Text> :
-        armour && displayArmour()}
+        {!mutation ? <Text>information loading</Text> :
+        mutation && displayMutations()}
         </View>
        
       </View>
@@ -103,4 +92,4 @@ const ArmourScreen = ({ navigation }) => {
     );
   }
 
-  export default ArmourScreen;
+  export default MutationsScreen;
