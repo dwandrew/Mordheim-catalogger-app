@@ -71,7 +71,7 @@ const ArmourScreen = ({ navigation }) => {
                 let desc = r.description.replace(/\_/g, "-")
                 desc = desc.replace(/\  /g, "")
                 return(<>
-                <Text style = {{fontStyle: "italic", fontWeight: "bold"}}>{name}</Text>
+                <Text style = {{fontStyle: "italic", fontWeight: "bold"}}>{name == "Shielded" ? "Optional rule: " : ""}{name}</Text>
                 <Text style = {styles.textBottom}>{desc}</Text>
                 </>
                 )
