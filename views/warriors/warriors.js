@@ -11,10 +11,10 @@ const WarriorScreen = ({ navigation }) => {
   const [warriors, setWarriors] = useState()
   const warriorTypes = [
     {key:"Mercenaries"},
-    {key:"Cult of the possessed"}, 
     {key:"Skaven"}, 
     {key:"The Undead"}, 
     {key:"Witch hunters"}, 
+    {key:"Cult of the possessed"}, 
     {key:"Sisters of Sigmar"}, 
   ]
 
@@ -53,7 +53,7 @@ const WarriorScreen = ({ navigation }) => {
         }
       }, []);
 
-      const renderGridItem = ({item, index}) => {
+    const renderGridItem = ({item, index}) => {
         let title = item.key.split()
         title[0] = title[0].toUpperCase()
         title = title.join()
@@ -61,12 +61,14 @@ const WarriorScreen = ({ navigation }) => {
         let third = width/3
         let fontSize = third*0.1
         return(
+          <View style ={{flex: 1, margin: "auto",}}>
           <TouchableOpacity 
           style={styles.button}
           onPress={() => {setActiveWarrior(item.key)}}
         >
           <Text style = {{color: "white", fontSize: fontSize}}>{title}</Text>
           </TouchableOpacity>
+          </View>
         )
       }
 
@@ -110,14 +112,15 @@ const itemGrid = (numColumns, data) => {
 
   return (
     <FlatList
+      style = {{width: "100%", marginBottom: 10}}
       data={data}
       renderItem={({item}) => (
-        <View style= {{height: 100}}>
+        <View style= {{height: 60, flex: 1, width: 100}}>
           <Text style={styles.itemTitle}>{item.name}</Text>
           <Text style={styles.itemItalic}>{item.cost} gold crowns</Text>
           <Text style={styles.itemNoBorder}>{item.rarity}</Text>
-          <Text style={styles.itemNoBorder}>{item.range}</Text>
-          <Text style={styles.itemNoBorder}>{item.strength}</Text>
+          {/* <Text style={styles.itemNoBorder}>{item.range !== "Close Combat" ? "Range: " : ""}{item.range}</Text>
+          <Text style={styles.itemNoBorder}>Strength: {item.strength}</Text> */}
         </View>
       )}
       keyExtractor={item => item.id}
@@ -150,8 +153,10 @@ const itemGrid = (numColumns, data) => {
             textAlign: 'center',
           },
           itemTitle: {
-            flex: 1,
+            // flex: 1,
+            // flexShrink: 1,
             margin: 0,
+            maxWidth: "100%",
             fontWeight: "bold",
             textAlign: 'center',
 
@@ -168,7 +173,8 @@ const itemGrid = (numColumns, data) => {
             backgroundColor: "black",
             borderRadius: 2,
             padding: 7,
-            margin: 1
+            margin: 1,
+            
           },
         textContainerStyle: {
             flex: 2,
@@ -193,17 +199,19 @@ const itemGrid = (numColumns, data) => {
               renderItem = {renderGridItem}
               numColumns = {"3"}
               />
-            </View>
+          </View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <TouchableOpacity 
           style={styles.button}
           onPress={() => {setShowEquipment(!showEquipment)}}
         >
           <Text style = {{color: "white"}}>{showEquipment ? "Hide equipment list" : "Show equipment list"}</Text>
         </TouchableOpacity>
+        </View>
 
       <View style = {{marginBottom: 100}}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <View>
+        <View style = {{flex: 1, width: "100%"}}>
           {showEquipment ? equipmentLists() : null}
         </View>
         

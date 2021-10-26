@@ -66,12 +66,14 @@ const SkillScreen = ({ navigation }) => {
       title = title.join()
      
       return(
+        <View style ={{flex: 1, margin: "auto",}}>
         <TouchableOpacity 
         style={styles.button}
         onPress={() => {setActiveSkill(item.key)}}
       >
         <Text style = {{color: "white", }}>{title}</Text>
         </TouchableOpacity>
+        </View>
       )
     }
 
